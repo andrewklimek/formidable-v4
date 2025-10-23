@@ -695,7 +695,7 @@ class FrmDb {
 	 */
 	public static function add_key_to_group_cache( $key, $group ) {
 		$cached         = self::get_group_cached_keys( $group );
-		$cached[ $key ] = $key;
+		$cached[ $key ] = true;
 		wp_cache_set( 'cached_keys', $cached, $group, 300 );
 	}
 
@@ -732,7 +732,7 @@ class FrmDb {
 		$cached_keys = self::get_group_cached_keys( $group );
 
 		if ( ! empty( $cached_keys ) ) {
-			foreach ( $cached_keys as $key ) {
+			foreach ( $cached_keys as $key => $bool ) {
 				wp_cache_delete( $key, $group );
 			}
 
