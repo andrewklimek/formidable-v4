@@ -825,6 +825,10 @@ class FrmEntryFormatter {
 	 * @return mixed|string
 	 */
 	protected function prepare_display_value_for_html_table( $display_value, $field_type = '' ) {
+		if ( is_null( $display_value ) ) {
+			// error_log( "null value passed to prepare_display_value_for_html_table() in formidable/classes/models/FrmEntryFormatter.php\n" . print_r( debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS ), true ) );
+			return '';
+		}
 		$display_value = $this->flatten_array( $display_value );
 		if ( ! isset( $this->atts['line_breaks'] ) || ! empty( $this->atts['line_breaks'] ) ) {
 			$display_value = str_replace( array( "\r\n", "\n" ), '<br/>', $display_value );
@@ -876,6 +880,11 @@ class FrmEntryFormatter {
 	 * @return mixed
 	 */
 	protected function strip_html( $value ) {
+
+		if ( is_null( $value ) ) {
+			// error_log( "null value passed to strip_html() in formidable/classes/models/FrmEntryFormatter.php\n" . print_r( debug_backtrace( DEBUG_BACKTRACE_IGNORE_ARGS ), true ) );
+			return '';
+		}
 
 		if ( $this->is_plain_text ) {
 
