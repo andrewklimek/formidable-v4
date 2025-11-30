@@ -8,7 +8,7 @@ class FrmEntryMeta {
 	/**
 	 * @param string $meta_key
 	 */
-	public static function add_entry_meta( $entry_id, $field_id, $meta_key, $meta_value ) {
+	public static function add_entry_meta( $entry_id, $field_id, $meta_key, $meta_value, $clear_cache = true ) {
 		global $wpdb;
 
 		if ( FrmAppHelper::is_empty_value( $meta_value ) ) {
@@ -29,8 +29,10 @@ class FrmEntryMeta {
 		$query_results = $wpdb->insert( $wpdb->prefix . 'frm_item_metas', $new_values );
 
 		if ( $query_results ) {
-			self::clear_cache();
-			wp_cache_delete( $entry_id, 'frm_entry' );
+			if ( $clear_cache ) {
+				self::clear_cache();
+				wp_cache_delete( $entry_id, 'frm_entry' );
+			}
 			$id = $wpdb->insert_id;
 		} else {
 			$id = 0;
@@ -47,7 +49,7 @@ class FrmEntryMeta {
 	 *
 	 * @return bool|false|int
 	 */
-	public static function update_entry_meta( $entry_id, $field_id, $meta_key, $meta_value ) {
+	public static function update_entry_meta( $entry_id, $field_id, $meta_key, $meta_value, $clear_cache = true ) {
 		if ( ! $field_id ) {
 			return false;
 		}
@@ -68,8 +70,10 @@ class FrmEntryMeta {
 		}
 		$meta_value = maybe_serialize( $values['meta_value'] );
 
-		wp_cache_delete( $entry_id, 'frm_entry' );
-		self::clear_cache();
+		if ( $clear_cache ) {
+			wp_cache_delete( $entry_id, 'frm_entry' );
+			self::clear_cache();
+		}
 
 		return $wpdb->update( $wpdb->prefix . 'frm_item_metas', array( 'meta_value' => $meta_value ), $where_values );
 	}
@@ -131,11 +135,11 @@ class FrmEntryMeta {
 					unset( $values[ $field_id ] );
 				} else {
 					// if value exists, then update it
-					self::update_entry_meta( $entry_id, $field_id, '', $meta_value );
+					self::update_entry_meta( $entry_id, $field_id, '', $meta_value, false );
 				}
 			} else {
 				// if value does not exist, then create it
-				self::add_entry_meta( $entry_id, $field_id, '', $meta_value );
+				self::add_entry_meta( $entry_id, $field_id, '', $meta_value, false );
 			}
 		}
 
@@ -159,6 +163,7 @@ class FrmEntryMeta {
 		// Delete any leftovers
 		$wpdb->query( $wpdb->prepare( 'DELETE FROM ' . $wpdb->prefix . 'frm_item_metas ' . $where['where'], $where['values'] ) ); // WPCS: unprepared SQL ok.
 		self::clear_cache();
+		wp_cache_delete( $entry_id, 'frm_entry' );
 	}
 
 	public static function duplicate_entry_metas( $old_id, $new_id ) {
