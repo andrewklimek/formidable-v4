@@ -29,6 +29,11 @@ if ( ! defined( 'ABSPATH' ) ) {
 // temp fix for WP 6.9 breaking late CSS loading
 // see formidable-pro/classes/controllers/FrmProStylesController.php:jquery_css_url
 add_filter( 'should_load_separate_core_block_assets', '__return_false' );
+add_filter( 'wp_should_output_buffer_template_for_enhancement', '__return_false' );
+
+// add_action( 'wp_template_enhancement_output_buffer_started', function() {
+// 	poo('Formidable Forms output buffering started' );
+// }, 0 );
 
 add_action( 'plugins_loaded', 'load_formidable_forms', 0 );
 function load_formidable_forms() {
