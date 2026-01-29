@@ -26,6 +26,10 @@ if ( ! defined( 'ABSPATH' ) ) {
 	die( 'You are not allowed to call this page directly.' );
 }
 
+// temp fix for WP 6.9 breaking late CSS loading
+// see formidable-pro/classes/controllers/FrmProStylesController.php:jquery_css_url
+add_filter( 'should_load_separate_core_block_assets', '__return_false' );
+
 add_action( 'plugins_loaded', 'load_formidable_forms', 0 );
 function load_formidable_forms() {
 	global $frm_vars;
