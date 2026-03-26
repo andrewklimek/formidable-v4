@@ -801,7 +801,7 @@ class FrmField {
 
 		foreach ( $field_chunks as $field ) {
 			$name = $next ? $base_name . $next : $base_name;
-			$set  = set_transient( $name, $field, 60 * 60 * 6 );
+			$set  = set_transient( $name, $field, DAY_IN_SECONDS * 14 );
 			if ( ! $set ) {
 				// the transient didn't save
 				if ( $name != $base_name ) {
