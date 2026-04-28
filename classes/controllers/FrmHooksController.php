@@ -82,8 +82,8 @@ class FrmHooksController {
 		// Simple Blocks Controller.
 		add_action( 'init', 'FrmSimpleBlocksController::register_simple_form_block' );
 
-		add_filter( 'cron_schedules', 'FrmUsageController::add_schedules' );
-		add_action( 'formidable_send_usage', 'FrmUsageController::send_snapshot' );
+		// add_filter( 'cron_schedules', 'FrmUsageController::add_schedules' );// weekly was available starting WP 5.4
+		// add_action( 'formidable_send_usage', 'FrmUsageController::send_snapshot' );// dont send usage stats
 
 		/**
 		 * Make name field work with View.
@@ -153,7 +153,7 @@ class FrmHooksController {
 		// Simple Blocks Controller.
 		add_action( 'enqueue_block_editor_assets', 'FrmSimpleBlocksController::block_editor_assets' );
 
-		add_action( 'admin_init', 'FrmUsageController::schedule_send' );
+		// add_action( 'admin_init', 'FrmUsageController::schedule_send' );// dont send usage stats
 
 		FrmSMTPController::load_hooks();
 		FrmWelcomeController::load_hooks();
