@@ -476,8 +476,13 @@ class FrmEntriesController {
 	}
 
 	public static function process_entry( $errors = '', $ajax = false ) {
-		$form_id = FrmAppHelper::get_post_param( 'form_id', '', 'absint' );
-		if ( FrmAppHelper::is_admin() || empty( $_POST ) || empty( $form_id ) || ! isset( $_POST['item_key'] ) ) {
+
+		if ( empty( $_POST ) || empty( $_POST[ 'form_id' ] ) || empty( $_POST[ 'item_key' ] ) || FrmAppHelper::is_admin() ) {
+			return;
+		}
+		$form_id = absint( $_POST['form_id'] );
+		
+		if ( empty( $form_id ) ) {
 			return;
 		}
 
