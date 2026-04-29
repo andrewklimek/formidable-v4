@@ -8,7 +8,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<input type="hidden" name="field_options[field_order_<?php echo esc_attr( $field['id'] ); ?>]" value="<?php echo esc_attr( $field['field_order'] ); ?>"/>
 
 	<div class="frm-sub-label alignright">
-		(ID <?php echo esc_html( $field['id'] ); ?>)
+		ID: <?php echo esc_html( $field['id'] ); ?> &nbsp; key: <?php echo esc_html( $field['field_key'] ); ?>
 	</div>
 	<h3>
 		<?php
@@ -20,7 +20,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 		?>
 	</h3>
 
-	<div class="frm_grid_container frm-collapse-me">
+	<div class="frm_grid_container">
 		<?php if ( $display['label'] ) { ?>
 		<p>
 			<label for="frm_name_<?php echo esc_attr( $field['id'] ); ?>">
@@ -104,11 +104,10 @@ do_action( 'frm_before_field_options', $field );
 
 ?>
 
-	<h3 class="frm-collapsed">
+	<h3>
 		<?php esc_html_e( 'Advanced', 'formidable' ); ?>
-		<i class="frm_icon_font frm_arrowdown6_icon"></i>
 	</h3>
-	<div class="frm_grid_container frm-collapse-me">
+	<div class="frm_grid_container">
 
 		<?php if ( $display['default'] ) { ?>
 			<div class="frm-has-modal">
@@ -328,12 +327,11 @@ do_action( 'frm_before_field_options', $field );
 		$has_validation = ( ( $display['invalid'] && ! $hidden_invalid ) || $field['required'] || FrmField::is_option_true( $field, 'unique' ) || FrmField::is_option_true( $field, 'conf_field' ) );
 		?>
 		<div class="frm_validation_msg <?php echo esc_attr( $has_validation ? '' : 'frm_hidden' ); ?>">
-			<h3 class="frm-collapsed">
+			<h3>
 				<?php esc_html_e( 'Validation Messages', 'formidable' ); ?>
-				<i class="frm_icon_font frm_arrowdown6_icon"></i>
 			</h3>
 
-			<div class="frm_validation_box frm-collapse-me">
+			<div class="frm_validation_box">
 				<?php if ( $display['required'] ) { ?>
 					<p class="frm_required_details<?php echo esc_attr( $field['id'] . ( $field['required'] ? '' : ' frm_hidden' ) ); ?>">
 						<label for="field_options_blank_<?php echo esc_attr( $field['id'] ); ?>">

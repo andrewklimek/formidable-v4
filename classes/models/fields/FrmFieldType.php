@@ -373,7 +373,7 @@ DEFAULT_HTML;
 
 		$this->field_choices_heading( $args );
 
-		echo '<div class="frm_grid_container frm-collapse-me' . esc_attr( $this->extra_field_choices_class() ) . '">';
+		echo '<div class="frm_grid_container' . esc_attr( $this->extra_field_choices_class() ) . '">';
 		$this->show_priority_field_choices( $args );
 		include( FrmAppHelper::plugin_path() . '/classes/views/frm-fields/back-end/field-choices.php' );
 		$this->show_extra_field_choices( $args );

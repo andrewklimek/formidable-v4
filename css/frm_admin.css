@@ -835,8 +835,7 @@ p.frm_has_shortcodes {
 
 .frm-right-panel h3 {
 	color: var(--dark-grey);
-	font-size: 20px;
-	font-weight: 400;
+	font-size: 12px;
 	border-top: 2px solid var(--sidebar-hover);
 	margin: 0;
 }
@@ -3495,8 +3494,7 @@ label input[type="checkbox"], label input[type="radio"] {
 }
 
 #frm-options-panel h3 {
-	padding: 15px 0;
-	margin-top: -2px;
+	padding: 6px 0;
 }
 
 .frm_field_key {
@@ -5000,8 +4998,7 @@ table td, .form-table tr td {
 }
 
 .frm-inline-select,
-#frm_submit_logic_row,
-.frm_logic_rows .frm-collapse-me {
+#frm_submit_logic_row {
 	line-height: 30px;
 }
 
@@ -5201,7 +5198,7 @@ a.frm_action_icon:hover {
 }
 
 .frm-field-action-icons a {
-	margin-left: 15px;
+	margin-right: 15px;
 	float: right;
 	font-size: 16px;
 	width: 17px;
@@ -5799,20 +5796,6 @@ li.selected .divider_section_only:before {
 
 .open .widget-top .frm_arrow_right_icon:before {
 	content: '\e62a';
-}
-
-.frm-collapsed + .frm-collapse-me {
-    overflow: hidden !important;
-}
-
-.frm-collapse-me {
-	padding-bottom: 10px;
-}
-
-.frm-collapsed + div {
-	height: 0;
-	padding: 0;
-	border-bottom: 2px solid var(--sidebar-hover);
 }
 
 .frm_sorting .divider_section_only > .frm_ipe_field_label {

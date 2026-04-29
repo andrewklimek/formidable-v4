@@ -2757,24 +2757,6 @@ function frmAdminBuildJS() {
 		}
 	}
 
-	function clickDescription() {
-		/*jshint validthis:true */
-		var setting = document.querySelectorAll( '[data-changeme="' + this.id + '"]' )[0];
-		if ( typeof setting !== 'undefined' ) {
-			setTimeout( function() {
-				setting.focus();
-				autoExpandSettings( setting );
-			}, 50 );
-		}
-	}
-
-	function autoExpandSettings( setting ) {
-		var inSection = setting.closest( '.frm-collapse-me' );
-		if ( inSection !== null ) {
-			inSection.previousElementSibling.classList.remove( 'frm-collapsed' );
-		}
-	}
-
 	function normalizeFieldName( fieldTypeName ) {
 		if ( fieldTypeName === 'divider' ) {
 			fieldTypeName = 'section';
@@ -2799,14 +2781,6 @@ function frmAdminBuildJS() {
 			e.stopPropagation();
 		}
 		clickAction( this );
-	}
-
-	/**
-	 * Open Advanced settings on double click.
-	 */
-	function openAdvanced() {
-		var fieldId = this.getAttribute( 'data-fid' );
-		autoExpandSettings( document.getElementById( 'field_options_field_key_' + fieldId ) );
 	}
 
 	function toggleRepeatButtons() {
@@ -6972,9 +6946,7 @@ function frmAdminBuildJS() {
 			$builderForm.on( 'focusin', '.frm_classes', showBuilderModal );
 
 			$newFields.on( 'click', '.frm_primary_label', clickLabel );
-			$newFields.on( 'click', '.frm_description', clickDescription );
 			$newFields.on( 'click', 'li.ui-state-default', clickVis );
-			$newFields.on( 'dblclick', 'li.ui-state-default', openAdvanced );
 			$builderForm.on( 'change', '.frm_tax_form_select', toggleFormTax );
 			$builderForm.on( 'change', 'select.conf_field', addConf );
 

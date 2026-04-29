@@ -11,6 +11,9 @@ if ( ! defined( 'ABSPATH' ) ) {
 	<?php do_action( 'frm_extra_field_actions', $field['id'] ); ?>
 
 <div id="field_<?php echo esc_attr( $field['id'] ); ?>_inner_container" class="frm_inner_field_container">
+	<div class="frm-sub-label alignright">
+		<?php echo esc_html( $field['id'] ); ?>
+	</div>
 	<div class="frm-field-action-icons frm-show-hover">
 
 		<?php if ( $field['type'] === 'divider' ) { ?>
@@ -28,9 +31,6 @@ if ( ! defined( 'ABSPATH' ) ) {
 			<?php FrmAppHelper::icon_by_class( 'frm_icon_font frm_clone_icon' ); ?>
 		</a>
 
-		<div class="frm-sub-label alignright">
-			(ID <?php echo esc_html( $field['id'] ); ?>)
-		</div>
 	</div>
 
 	<label class="frm_primary_label" id="field_label_<?php echo esc_attr( $field['id'] ); ?>">
